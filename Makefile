@@ -5,8 +5,8 @@ SRC = main.c
 
 all: $(TARGET)
 
-$(TARGET): 
-	$(CC) $(FLAGS) $(SRC) -lSDL2 -o $(TARGET)
+$(TARGET): $(SRC)
+	$(CC) $(FLAGS) $(SRC) -lSDL2 -MD -o $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
