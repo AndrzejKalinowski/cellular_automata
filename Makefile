@@ -1,7 +1,15 @@
-all: main
+CC = gcc
+FLAGS = -Wall -Wextra -g
+TARGET = app.out
+SRC = main.c
 
-main: 
-	gcc main.c -lSDL2 -o app.out
+all: $(TARGET)
 
-run: all
-	./app.out
+$(TARGET): 
+	$(CC) $(FLAGS) $(SRC) -lSDL2 -o $(TARGET)
+
+run: $(TARGET)
+	./$(TARGET)
+
+clean:
+	rm -f $(TARGET)
