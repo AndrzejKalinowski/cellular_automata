@@ -1,7 +1,7 @@
 # cellular_automata
 **Conway’s Game of Life** This is an end-of-semester project for dr Gepner’s Programming 1 course at the MEiL Faculty at WUT.
 
-# installation, compiling , running and environment
+## Installation, compiling , running and environment
 ### Environment
 I'm using Ubuntu 24.04 LTS under WSL2 running on Windows 11 25H2.
 Compilation is done using GCC and a Makefile.
@@ -27,11 +27,11 @@ make run
 ### Debugging
 Debugging is done through VS code (as almost everything else). A Task is created to compile using the Makefile. Suitable launch configuration was also created for debugging. All of this is managed though VSC gui and json files. For starting the debugger just click on the launch configuration in the run tab.
 
-# General working principle
+## General working principle
 
 _todo_
 
-# Research and Resources 
+## Research and Resources 
 Some of the resources that I've used for making this project.
 
 <https://pl.wikipedia.org/wiki/Gra_w_%C5%BCycie>
