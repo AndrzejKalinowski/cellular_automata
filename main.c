@@ -10,16 +10,16 @@
 #include <SDL2/SDL.h>
 
 // Some defines
-#define GOL_WIDTH 120   // how many columns of cells
-#define GOL_HEIGHT 120  // how many rows of cells
+#define GOL_WIDTH 80   // how many columns of cells
+#define GOL_HEIGHT 80  // how many rows of cells
 
-#define CELL_SIZE 5
+#define CELL_SIZE 10
 
 #define SCREEN_WIDTH    GOL_WIDTH*CELL_SIZE     // in pixels
 #define SCREEN_HEIGHT   GOL_HEIGHT*CELL_SIZE    // in pixels
 
 // A function that counts how many alive neighbors does a cell at (x, y) have
-int count_alive_neighbors(int cell_array[GOL_WIDTH][GOL_HEIGHT], int x, int y){
+int CountAliveNeighbors(int cell_array[GOL_WIDTH][GOL_HEIGHT], int x, int y){
     int count = 0;
     if(cell_array[x - 1][y - 1] == 1)
         count++;
@@ -52,12 +52,12 @@ int main(int argc, char* argv[]){
 
     // Initializing an array containing cell states
     int cell_states[GOL_WIDTH][GOL_HEIGHT];
-    int cell_states_NEW[GOL_WIDTH][GOL_HEIGHT];
+    int cell_states_new[GOL_WIDTH][GOL_HEIGHT];
     // Filling the arrays with zeros (at the begining all cells are dead)
     for(int i = 0; i < GOL_WIDTH; i++){
         for(int j = 0; j < GOL_HEIGHT; j++){
             cell_states[i][j] = 0;
-            cell_states_NEW[i][i] = 0;
+            cell_states_new[i][j] = 0;
         }   
     }
     // cell_states[50][50] = 1;    // for testing
@@ -67,22 +67,46 @@ int main(int argc, char* argv[]){
     cell_states[60][32] = 1;    // for testing
 
     int quit = 0;
+    int pause = 0;
     while(!quit){
         while(SDL_PollEvent(&e)){
-            if(e.type == SDL_QUIT){
-                quit = 1;
-            }    
+            switch (e.type){
+                case SDL_QUIT:
+                    quit = 1;
+                    break;
+                case SDL_KEYDOWN:
+                    if(e.key.keysym.sym == 32){
+                        // Pause if space is pressed
+                        pause = !pause;
+                    }
+                    break;
+                case SDL_MOUSEBUTTONDOWN:
+                    // Changing the state of a cell if it is clicked
+                    cell_states[(int) e.motion.x/CELL_SIZE][(int) e.motion.y/CELL_SIZE] = !cell_states[(int) e.motion.x/CELL_SIZE][(int) e.motion.y/CELL_SIZE];
+                    break;
+                default:
+                    break;
+            }
         }
+
         // Clearing the screen with a dark gray background
         SDL_SetRenderDrawColor(renderer, 0x00, 0x05, 0x05, 0xFF);
         SDL_RenderClear(renderer);
         
-        SDL_SetRenderDrawColor(renderer, 0x50, 0xa0, 0xee, 0xff);   // alive cell color
+        // Drawing grid lines
+        SDL_SetRenderDrawColor(renderer, 0x20, 0x20, 0x20, 0xff);   // grid lines color - gray
+        for(int i = 0; i <= GOL_HEIGHT; i++){
+            SDL_RenderDrawLine(renderer, 0, i*CELL_SIZE, SCREEN_WIDTH, i*CELL_SIZE);
+        }
+        for(int i = 0; i <= GOL_WIDTH; i++){
+            SDL_RenderDrawLine(renderer, i*CELL_SIZE, 0, i*CELL_SIZE, SCREEN_HEIGHT);
+        }
+
+        // Drawing the cells, according to their state
+        SDL_SetRenderDrawColor(renderer, 0x50, 0xa0, 0xee, 0xff);   // alive cell color - light blue
         SDL_Rect cell_square;
         cell_square.w = CELL_SIZE;
         cell_square.h = CELL_SIZE;
-
-        // Drawing the cells, according to their state
         for(int i = 0; i < GOL_WIDTH; i++){
             for(int j = 0; j < GOL_HEIGHT; j++){
                 if(cell_states[i][j]){
@@ -92,24 +116,26 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        // Updating cell states according to the rules of gol
-        for(int i = 0; i < GOL_WIDTH; i++){
-            for(int j = 0; j < GOL_HEIGHT; j++){
-                if(count_alive_neighbors(cell_states, i, j) == 3){
-                    cell_states_NEW[i][j] = 1;
-                }
-                else if(cell_states[i][j] == 1 && count_alive_neighbors(cell_states, i, j) == 2){
-                    cell_states_NEW[i][j] = 1;
-                }
-                else{
-                    cell_states_NEW[i][j] = 0;
+        if(!pause){
+            // Updating cell states according to the rules of gol
+            for(int i = 0; i < GOL_WIDTH; i++){
+                for(int j = 0; j < GOL_HEIGHT; j++){
+                    if(CountAliveNeighbors(cell_states, i, j) == 3){
+                        cell_states_new[i][j] = 1;
+                    }
+                    else if(cell_states[i][j] == 1 && CountAliveNeighbors(cell_states, i, j) == 2){
+                        cell_states_new[i][j] = 1;
+                    }
+                    else{
+                        cell_states_new[i][j] = 0;
+                    }
                 }
             }
-        }
-        // Coping the contents of "new" array to the main one
-        for(int i = 0; i < GOL_WIDTH; i++){
-            for(int j = 0; j < GOL_HEIGHT; j++){
-                cell_states[i][j] = cell_states_NEW[i][j];
+            // Coping the contents of "new" array to the main one
+            for(int i = 0; i < GOL_WIDTH; i++){
+                for(int j = 0; j < GOL_HEIGHT; j++){
+                    cell_states[i][j] = cell_states_new[i][j];
+                }
             }
         }
         SDL_RenderPresent(renderer);    // Updating screen
