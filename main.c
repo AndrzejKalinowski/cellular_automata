@@ -132,11 +132,12 @@ int main(int argc, char* argv[]){
                 }
             }
             // Coping the contents of "new" array to the main one
-            for(int i = 0; i < GOL_WIDTH; i++){
-                for(int j = 0; j < GOL_HEIGHT; j++){
-                    cell_states[i][j] = cell_states_new[i][j];
-                }
-            }
+            // for(int i = 0; i < GOL_WIDTH; i++){
+            //     for(int j = 0; j < GOL_HEIGHT; j++){
+            //         cell_states[i][j] = cell_states_new[i][j];
+            //     }
+            // }
+            memcpy(cell_states, cell_states_new, sizeof(cell_states_new));  // maybe more efficient
         }
         SDL_RenderPresent(renderer);    // Updating screen
         SDL_Delay(200);
