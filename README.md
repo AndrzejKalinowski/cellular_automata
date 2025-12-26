@@ -3,7 +3,7 @@
 
 ## Installation, compiling , running and environment
 ### Environment
-I'm using Ubuntu 24.04 LTS under WSL2 running on Windows 11 25H2.
+I'm using Ubuntu 24.04 LTS under WSL2 (WSLg required) running on Windows 11 25H2.
 Compilation is done using GCC and a Makefile.
 Visual Studio Code, connected to the WSL environment, is used as the editor, GIT gui and debugger.
 ### Installation

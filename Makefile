@@ -6,10 +6,10 @@ SRC = main.c
 all: $(TARGET)
 
 $(TARGET): $(SRC)
-	$(CC) $(FLAGS) $(SRC) -lSDL2 -MD -o $(TARGET)
+	$(CC) $(FLAGS) $(SRC) -lSDL2 -o $(TARGET)
 
 run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGET) *.d *.out

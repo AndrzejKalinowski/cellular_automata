@@ -1,6 +1,6 @@
 // Andrzej Kalinowski 2025
 // Implementation of the classic Conway's Game of Life
-// using C and SDL2 liblary
+// using C and SDL2
 
 // Basic C includes
 #include <stdlib.h>
@@ -10,7 +10,7 @@
 #include <SDL2/SDL.h>
 
 // Some defines
-#define GOL_WIDTH 120  // how many columns of cells
+#define GOL_WIDTH 120   // how many columns of cells
 #define GOL_HEIGHT 120  // how many rows of cells
 
 #define CELL_SIZE 5
@@ -18,7 +18,7 @@
 #define SCREEN_WIDTH    GOL_WIDTH*CELL_SIZE     // in pixels
 #define SCREEN_HEIGHT   GOL_HEIGHT*CELL_SIZE    // in pixels
 
-// A function that counts how many neighbors does a cell at (x, y) have
+// A function that counts how many alive neighbors does a cell at (x, y) have
 int count_alive_neighbors(int cell_array[GOL_WIDTH][GOL_HEIGHT], int x, int y){
     int count = 0;
     if(cell_array[x - 1][y - 1] == 1)
