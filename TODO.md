@@ -2,11 +2,12 @@
 - [x] Making the cells clickable (changing state)
 - [x] dynamically allocated arrays (changeable size)
 - [ ] Edge case (literally) handling, wrapping around
+- [ ] Split into different files
 - [ ] User interface
     - [ ] Buttons definition
     - [ ] Changing speed
     - [x] Stopping/starting
-- [ ] Saving the state to file
+- [ ] Saving and loading the state to/from a file
 - [ ] Working principle description in README
 - [ ] Arguments handling
     - [x] Size input

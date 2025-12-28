@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include "gui.h"
+#include "gol_helpers.h"
 
 // Some defines
 #define GOL_MAX_WIDTH 200   // maximum allowed number of columns of cells
@@ -12,29 +14,9 @@
 #define CELL_SIZE 10
 #define GUI_HEIGHT 100
 
-// A function that counts how many alive neighbors does a cell at (x, y) have
-int CountAliveNeighbors(int** cell_array, int x, int y){
-    int count = 0;
-    if(cell_array[x - 1][y - 1] == 1)
-        count++;
-    if(cell_array[x - 1][y] == 1)
-        count++;
-    if(cell_array[x - 1][y + 1] == 1)
-        count++;
-    if(cell_array[x][y - 1] == 1)
-        count++;
-    if(cell_array[x][y + 1] == 1)
-        count++;
-    if(cell_array[x + 1][y - 1] == 1)
-        count++;
-    if(cell_array[x + 1][y] == 1)
-        count++;
-    if(cell_array[x + 1][y + 1] == 1)
-        count++;
-    return count;
-}
-
 int main(int argc, char* argv[]){
+
+    // Handling arguments
     int w, h;
     if(argc == 3){
         w = atoi(argv[1]);
@@ -49,9 +31,11 @@ int main(int argc, char* argv[]){
     const int screen_width = gol_texture_width;
     const int screen_height = gol_texture_height + GUI_HEIGHT;    // including space for the interface
 
+    test_gui();
+
     // Initializing SDL2
     SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window* window = SDL_CreateWindow("cellular automata", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screen_width, screen_height, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("cellular automata", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screen_width, screen_height, SDL_WINDOW_SHOWN);
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
     SDL_Texture* gol_texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_RGBA8888, SDL_TEXTUREACCESS_TARGET, gol_texture_width, gol_texture_height);
     SDL_Event e;
@@ -135,11 +119,11 @@ int main(int argc, char* argv[]){
         }
         if(!pause){
             // Updating cell states according to the rules of gol
-            for(int i = 1; i < w - 1; i++){
-                for(int j = 1; j < h -1 ; j++){
-                    int count = CountAliveNeighbors(cell_states, i, j);
+            for(int i = 0; i < w; i++){
+                for(int j = 0; j < h; j++){
+                    int count = CountAliveNeighbors(cell_states, w, h, i, j);
                     if(count == 3){
-                        cell_states_new[i][j] = 1;
+                        cell_states_new[i][j] = 1; 
                     }
                     else if(cell_states[i][j] == 1 && count == 2){
                         cell_states_new[i][j] = 1;

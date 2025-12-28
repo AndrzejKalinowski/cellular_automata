@@ -1,7 +1,7 @@
 CC = gcc
 FLAGS = -Wall -Wextra -g
 TARGET = app.out
-SRC = main.c
+SRC = main.c gui.c gol_helpers.c
 
 all: $(TARGET)
 
