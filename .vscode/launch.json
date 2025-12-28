@@ -31,7 +31,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/app.out",
-            "args": [],
+            "args": ["50", "50"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],

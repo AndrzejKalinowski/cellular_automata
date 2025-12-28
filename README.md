@@ -41,3 +41,5 @@ Some of the resources that I've used for making this project.
 <https://www.youtube.com/watch?v=FWSR_7kZuYg>
 
 <https://www.youtube.com/watch?v=mxWkj0KiICk>
+
+<https://www.geeksforgeeks.org/c/pass-2d-array-parameter-c/>

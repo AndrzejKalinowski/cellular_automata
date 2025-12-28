@@ -1,7 +1,13 @@
 # Things that should be done:
 - [x] Making the cells clickable (changing state)
-- [ ] dynamically allocated arrays (changeable state)
+- [x] dynamically allocated arrays (changeable size)
+- [ ] Edge case (literally) handling, wrapping around
 - [ ] User interface
+    - [ ] Buttons definition
     - [ ] Changing speed
     - [x] Stopping/starting
 - [ ] Saving the state to file
+- [ ] Working principle description in README
+- [ ] Arguments handling
+    - [x] Size input
+    - [ ] File input
