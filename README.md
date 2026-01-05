@@ -11,7 +11,7 @@ Visual Studio Code, connected to the WSL environment, is used as the editor, GIT
 git clone https://github.com/AndrzejKalinowski/cellular_automata.git
 sudo apt install gcc
 sudo apt install make
-sudo apt install gdb    ## compiler, omit if unused
+sudo apt install gdb    ## debugger, omit if unused
 sudo apt install libsdl2-dev
 ```
 ### Compiling
@@ -27,6 +27,13 @@ make run
 ### Debugging
 Debugging is done through VS code (as almost everything else). A Task is created to compile using the Makefile. Suitable launch configuration was also created for debugging. All of this is managed though VSC gui and json files. For starting the debugger just click on the launch configuration in the run tab.
 
+## Usage
+```
+./gol.out [file] [width] [height]
+```
+- [file] - a path to a save file, if not provided a default file is used
+- [width] [height] - (in cells) size of the game, the size read from the file takes priority, if not provided a default of 70x70 is used
+ 
 ## General working principle
 
 _todo_
@@ -43,3 +50,5 @@ Some of the resources that I've used for making this project.
 <https://www.youtube.com/watch?v=mxWkj0KiICk>
 
 <https://www.geeksforgeeks.org/c/pass-2d-array-parameter-c/>
+
+<https://ccfd.github.io/courses/info1_lab06.html>

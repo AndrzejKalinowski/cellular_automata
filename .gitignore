@@ -2,6 +2,9 @@
 # visual studio code - removed form gitignore
 # .vscode/
 
+# Custom file with game state
+*.gol
+
 # Prerequisites
 *.d
 

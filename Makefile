@@ -1,6 +1,6 @@
 CC = gcc
 FLAGS = -Wall -Wextra -g
-TARGET = app.out
+TARGET = gol.out
 SRC = main.c gui.c gol_helpers.c
 
 all: $(TARGET)
@@ -12,4 +12,4 @@ run: $(TARGET)
 	./$(TARGET)
 
 clean:
-	rm -f $(TARGET) *.d *.out
+	rm -f $(TARGET) *.d *.out *.gol

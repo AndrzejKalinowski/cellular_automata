@@ -1,14 +1,16 @@
 # Things that should be done:
 - [x] Making the cells clickable (changing state)
 - [x] dynamically allocated arrays (changeable size)
-- [ ] Edge case (literally) handling, wrapping around
-- [ ] Split into different files
+- [x] Edge case (literally) handling, wrapping around
+- [x] Split into different files
 - [ ] User interface
     - [ ] Buttons definition
     - [ ] Changing speed
+    - [ ] Clearing the game
     - [x] Stopping/starting
-- [ ] Saving and loading the state to/from a file
+- [x] Saving and loading the state to/from a file
 - [ ] Working principle description in README
-- [ ] Arguments handling
+- [x] Arguments handling
     - [x] Size input
-    - [ ] File input
+    - [x] File input
+- [x] Arguments description in README

@@ -18,14 +18,28 @@ int main(int argc, char* argv[]){
 
     // Handling arguments
     int w, h;
-    if(argc == 3){
-        w = atoi(argv[1]);
-        h = atoi(argv[2]);
+    FILE* f;    // a file used for loading/saving game state
+    if(argc >= 2){
+        f = openGolFile(argv[1]);
     }
     else{
-        w = 70;
-        h = 70;
+        f = openGolFile("default.gol"); // default file, if path is not provided
     }
+    // Loading gol size form the first line of the file
+    // if failed checking if the user provided size in arguments
+    if(fscanf(f, "%d %d \n", &w, &h) == -1){
+        if(argc >= 4){
+            w = atoi(argv[2]);
+            h = atoi(argv[3]);
+        }   
+        else{
+            // Setting the default size if could not be read form file and user not provided by user
+            w = 70;
+            h = 70;
+        }
+    }
+    printf("Width set to: %d, height set to: %d \n", w, h);
+
     const int gol_texture_width = w * CELL_SIZE;
     const int gol_texture_height = h * CELL_SIZE;
     const int screen_width = gol_texture_width;
@@ -56,12 +70,8 @@ int main(int argc, char* argv[]){
         cell_states_new[i] = cell_states_new[0] + i * h;
     }
     // Filling the arrays with zeros (at the begining all cells are dead)
-    for(int i = 0; i < w; i++){
-        for(int j = 0; j < h; j++){
-            cell_states[i][j] = 0;
-            cell_states_new[i][j] = 0;
-        }   
-    }
+    clearGol(cell_states, w, h);
+
     // A simple blinker is defined:
     // cell_states[60][30] = 1;    // for testing
     // cell_states[60][31] = 1;    // for testing
@@ -76,9 +86,24 @@ int main(int argc, char* argv[]){
                     quit = 1;
                     break;
                 case SDL_KEYDOWN:
-                    if(e.key.keysym.sym == 32){
-                        // Pause if space is pressed
-                        pause = !pause;
+                    // Handling keyboard
+                    switch(e.key.keysym.sym){
+                        case 32:
+                            // Pause if space is pressed
+                            pause = !pause;
+                            break;
+                        case 99:
+                            // Clear if 'c' is pressed
+                            clearGol(cell_states, w, h);
+                            break;
+                        case 115:
+                            // Save if 's' is pressed
+                            saveState(cell_states, w, h, f);
+                            break;
+                        case 114:
+                            // Load if 'r' is pressed
+                            loadState(cell_states, w, h, f);
+                            break;
                     }
                     break;
                 case SDL_MOUSEBUTTONDOWN:
@@ -145,6 +170,7 @@ int main(int argc, char* argv[]){
     }
 
     // Quitting
+    fclose(f);
     free(cell_states[0]);
     free(cell_states);
     SDL_DestroyRenderer(renderer);
