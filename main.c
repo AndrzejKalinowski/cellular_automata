@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
         if(argc >= 4){
             w = atoi(argv[2]);
             h = atoi(argv[3]);
-        }   
+        }
         else{
             // Setting the default size if could not be read form file and user not provided by user
             w = 70;
@@ -142,6 +142,14 @@ int main(int argc, char* argv[]){
                         case 114:
                             // Load if 'r' is pressed
                             loadState(cell_states, w, h, f);
+                            break;
+                        case 120:
+                            // Speed up if 'x' is pressed
+                            delay -= 8000;
+                            break;
+                        case 122:
+                            // Slow down if 'z' is pressed
+                            delay += 8000;
                             break;
                     }
                     break;

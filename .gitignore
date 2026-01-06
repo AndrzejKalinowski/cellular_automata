@@ -3,7 +3,7 @@
 # .vscode/
 
 # Custom file with game state
-*.gol
+# *.gol
 
 # Prerequisites
 *.d

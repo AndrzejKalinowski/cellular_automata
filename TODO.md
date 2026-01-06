@@ -9,10 +9,13 @@
     - [x] Clearing the game
     - [x] Stopping/starting
 - [x] Saving and loading the state to/from a file
-- [ ] Working principle description in README
+- [x] Working principle description in README
 - [x] Arguments handling
     - [x] Size input
     - [x] File input
 - [x] Arguments description in README
 - [x] Smarter frame rate limiter
-- [x] improve button look
+- [x] Improve button look
+- [x] Finnish keyboard interface
+- [x] Finish the documentation
+- [x] Make some game examples
