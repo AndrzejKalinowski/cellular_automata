@@ -4,14 +4,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include <SDL2/SDL.h>
 #include <SDL_image.h>
 #include "gui.h"
 #include "gol_helpers.h"
 
 // Some defines
-#define GOL_MAX_WIDTH 200   // maximum allowed number of columns of cells
-#define GOL_MAX_HEIGHT 200  // maximum allowed number of columns of cells
 #define CELL_SIZE 10
 #define GUI_HEIGHT 80
 
@@ -117,7 +116,8 @@ int main(int argc, char* argv[]){
 
     int quit = 0;
     int pause_state = 0;
-    int delay = 200;
+    int delay = 100000;
+    long last_frame_time = clock();
     while(!quit){
         while(SDL_PollEvent(&e)){
             switch (e.type){
@@ -158,10 +158,10 @@ int main(int argc, char* argv[]){
                 pause_state = !pause_state;
             }
             if(handle_button_event(&speedP_button, &e)){
-                delay -= 10;
+                delay -= 8000;
             }
             if(handle_button_event(&speedM_button, &e)){
-                delay += 10;
+                delay += 8000;
             }
             if(handle_button_event(&save_button, &e)){
                 saveState(cell_states, w, h, f);
@@ -210,7 +210,7 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        if(!pause_state){
+        if(!pause_state && ((clock() - last_frame_time) > delay)){  // contains framerate limiter
             // Updating cell states according to the rules of gol
             for(int i = 0; i < w; i++){
                 for(int j = 0; j < h; j++){
@@ -228,13 +228,14 @@ int main(int argc, char* argv[]){
             }
             // Coping the contents of "new" array to the main one
             memcpy(cell_states[0], cell_states_new[0], w * h * sizeof(*cell_states_new[0]));  // maybe more efficient
+            last_frame_time = clock();
         }
         
         // Updating screen
         SDL_RenderPresent(renderer);    
         SDL_SetRenderTarget(renderer, NULL);
         SDL_RenderCopy(renderer, gol_texture, NULL, &dst);
-        SDL_Delay(50 + delay*!pause_state); // slowing it down, speeding it up if paused (for less lag when clicking)
+        SDL_Delay(30);
     }
 
     // Quitting
