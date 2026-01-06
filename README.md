@@ -13,6 +13,7 @@ sudo apt install gcc
 sudo apt install make
 sudo apt install gdb    ## debugger, omit if unused
 sudo apt install libsdl2-dev
+sudo apt install libsdl2-image-dev
 ```
 ### Compiling
 Compilation is usually performed through Visual Studio Code using tasks and extensions, but can also be done manually:

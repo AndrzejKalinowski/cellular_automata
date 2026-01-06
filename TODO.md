@@ -3,10 +3,10 @@
 - [x] dynamically allocated arrays (changeable size)
 - [x] Edge case (literally) handling, wrapping around
 - [x] Split into different files
-- [ ] User interface
-    - [ ] Buttons definition
-    - [ ] Changing speed
-    - [ ] Clearing the game
+- [x] User interface
+    - [x] Buttons definition
+    - [x] Changing speed
+    - [x] Clearing the game
     - [x] Stopping/starting
 - [x] Saving and loading the state to/from a file
 - [ ] Working principle description in README
@@ -14,3 +14,4 @@
     - [x] Size input
     - [x] File input
 - [x] Arguments description in README
+- [ ] Smarter frame rate limiter

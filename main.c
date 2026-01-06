@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <SDL2/SDL.h>
+#include <SDL_image.h>
 #include "gui.h"
 #include "gol_helpers.h"
 
@@ -12,7 +13,7 @@
 #define GOL_MAX_WIDTH 200   // maximum allowed number of columns of cells
 #define GOL_MAX_HEIGHT 200  // maximum allowed number of columns of cells
 #define CELL_SIZE 10
-#define GUI_HEIGHT 100
+#define GUI_HEIGHT 80
 
 int main(int argc, char* argv[]){
 
@@ -45,8 +46,6 @@ int main(int argc, char* argv[]){
     const int screen_width = gol_texture_width;
     const int screen_height = gol_texture_height + GUI_HEIGHT;    // including space for the interface
 
-    test_gui();
-
     // Initializing SDL2
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window* window = SDL_CreateWindow("cellular automata", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screen_width, screen_height, SDL_WINDOW_SHOWN);
@@ -59,6 +58,45 @@ int main(int argc, char* argv[]){
     dst.h = gol_texture_height;
     dst.x = 0;
     dst.y = GUI_HEIGHT;
+
+    // Defining all of the buttons
+    const int button_width = (int) (screen_width - 6*2) / 6;
+    Button pause_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = 2, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/pause.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/pause_hoover.png"),
+    };
+    Button speedP_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = button_width + 4, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/speed+.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/speed+_hoover.png"),
+    };
+    Button speedM_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = button_width*2 + 6, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/speed-.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/speed-_hoover.png"),
+    };
+    Button save_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = button_width*3 + 8, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/save.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/save_hoover.png"),
+    };
+    Button load_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = button_width*4 + 10, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/load.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/load_hoover.png"),
+    };
+    Button clean_button = {
+        .b_rect = {.w = button_width, .h = 60, .x = button_width*5 + 12, .y = 10},
+        .renderer = renderer,
+        .b_texture = IMG_LoadTexture(renderer, "./gui/clean.png"),
+        .b_hover_texture = IMG_LoadTexture(renderer, "./gui/clean_hoover.png"),
+    };
 
     // Dynamically initializing two arrays for storing cell states
     int** cell_states = malloc(w * sizeof(int *));
@@ -78,7 +116,8 @@ int main(int argc, char* argv[]){
     // cell_states[60][32] = 1;    // for testing
 
     int quit = 0;
-    int pause = 0;
+    int pause_state = 0;
+    int delay = 200;
     while(!quit){
         while(SDL_PollEvent(&e)){
             switch (e.type){
@@ -90,7 +129,7 @@ int main(int argc, char* argv[]){
                     switch(e.key.keysym.sym){
                         case 32:
                             // Pause if space is pressed
-                            pause = !pause;
+                            pause_state =  !pause_state;
                             break;
                         case 99:
                             // Clear if 'c' is pressed
@@ -108,12 +147,41 @@ int main(int argc, char* argv[]){
                     break;
                 case SDL_MOUSEBUTTONDOWN:
                     // Changing the state of a cell if it is clicked
-                    cell_states[(int) e.motion.x/CELL_SIZE][(int) (e.motion.y - GUI_HEIGHT)/CELL_SIZE] = !cell_states[(int) e.motion.x/CELL_SIZE][(int) (e.motion.y - GUI_HEIGHT)/CELL_SIZE];   // offsetting by gui height
+                    if(e.motion.y >= GUI_HEIGHT){
+                        cell_states[(int) e.motion.x/CELL_SIZE][(int) (e.motion.y - GUI_HEIGHT)/CELL_SIZE] = !cell_states[(int) e.motion.x/CELL_SIZE][(int) (e.motion.y - GUI_HEIGHT)/CELL_SIZE];   // offsetting by gui height
+                    }
                     break;
                 default:
                     break;
             }
+            if(handle_button_event(&pause_button, &e)){
+                pause_state = !pause_state;
+            }
+            if(handle_button_event(&speedP_button, &e)){
+                delay -= 10;
+            }
+            if(handle_button_event(&speedM_button, &e)){
+                delay += 10;
+            }
+            if(handle_button_event(&save_button, &e)){
+                saveState(cell_states, w, h, f);
+            }
+            if(handle_button_event(&load_button, &e)){
+                loadState(cell_states, w, h, f);
+            }
+            if(handle_button_event(&clean_button, &e)){
+                clearGol(cell_states, w, h);
+            }
         }
+
+        // Drawing the buttons
+        draw_button(&pause_button);
+        draw_button(&speedP_button);
+        draw_button(&speedM_button);
+        draw_button(&save_button);
+        draw_button(&load_button);
+        draw_button(&clean_button);
+
         SDL_SetRenderTarget(renderer, gol_texture);
         // Clearing the screen with a dark gray background
         SDL_SetRenderDrawColor(renderer, 0x00, 0x05, 0x05, 0xFF);
@@ -142,7 +210,7 @@ int main(int argc, char* argv[]){
                 }
             }
         }
-        if(!pause){
+        if(!pause_state){
             // Updating cell states according to the rules of gol
             for(int i = 0; i < w; i++){
                 for(int j = 0; j < h; j++){
@@ -166,7 +234,7 @@ int main(int argc, char* argv[]){
         SDL_RenderPresent(renderer);    
         SDL_SetRenderTarget(renderer, NULL);
         SDL_RenderCopy(renderer, gol_texture, NULL, &dst);
-        SDL_Delay(50 + 180*!pause); // slowing it down, speeding it up if paused (for less lag when clicking)
+        SDL_Delay(50 + delay*!pause_state); // slowing it down, speeding it up if paused (for less lag when clicking)
     }
 
     // Quitting
