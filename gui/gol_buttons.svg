@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="96"
+   height="120"
+   viewBox="0 0 25.399999 31.75"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (f4327f4, 2025-05-13)"
+   sodipodi:docname="gol_buttons.svg"
+   inkscape:export-filename="clean_hoover.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:lockguides="false"
+     inkscape:zoom="5.7552083"
+     inkscape:cx="51.779185"
+     inkscape:cy="64.897738"
+     inkscape:window-width="1920"
+     inkscape:window-height="1009"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer6"
+     inkscape:export-bgcolor="#ffffff00" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect2-4"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer1"
+     inkscape:label="bg_normal"
+     style="display:none">
+    <path
+       style="fill:#27b6e3;fill-opacity:1;stroke-width:0.264583"
+       id="rect1-2"
+       height="31.745409"
+       x="-12.974139"
+       y="6.6125922"
+       width="25.408318"
+       inkscape:path-effect="#path-effect2-4"
+       sodipodi:type="rect"
+       d="M -10.328306,6.6125922 H 9.7883451 c 1.4657919,0 2.6458329,1.1800417 2.6458329,2.6458333 V 35.712168 c 0,1.465792 -1.180041,2.645833 -2.6458329,2.645833 H -10.328306 c -1.465792,0 -2.645833,-1.180041 -2.645833,-2.645833 V 9.2584255 c 0,-1.4657916 1.180041,-2.6458333 2.645833,-2.6458333 z"
+       rx="2.6458333"
+       transform="translate(12.965871,-6.6151864)" />
+  </g>
+  <g
+     inkscape:label="bg_hover"
+     inkscape:groupmode="layer"
+     id="bg_hover"
+     style="display:inline">
+    <path
+       style="fill:#5d00ff;fill-opacity:1;stroke-width:0.264583"
+       id="rect1"
+       height="31.746826"
+       x="-0.0012876504"
+       y="0.00060323073"
+       width="25.399549"
+       inkscape:path-effect="#path-effect2"
+       sodipodi:type="rect"
+       d="M 2.6445456,6.0323073e-4 H 22.752429 c 1.465791,0 2.645833,1.18004166927 2.645833,2.64583326927 V 29.101596 c 0,1.465792 -1.180042,2.645833 -2.645833,2.645833 H 2.6445456 c -1.4657916,0 -2.64583325,-1.180041 -2.64583325,-2.645833 V 2.6464365 c 0,-1.4657916 1.18004165,-2.64583326927 2.64583325,-2.64583326927 z"
+       rx="2.6458333" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="save"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:11.2889px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;white-space:pre;inline-size:29.3661;display:none;fill:#000000;fill-opacity:1;stroke-width:0.264583"
+       x="3.5079124"
+       y="12.862346"
+       id="text2"
+       transform="translate(-1.9850023,6.032255)"><tspan
+         x="3.5079124"
+         y="12.862346"
+         id="tspan9"><tspan
+           style="font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC'"
+           id="tspan8">save</tspan></tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="load">
+    <text
+       xml:space="preserve"
+       style="font-size:11.2889px;font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;display:none;fill:#000000;stroke-width:0.264583"
+       x="1.7009954"
+       y="18.848869"
+       id="text3"><tspan
+         sodipodi:role="line"
+         id="tspan2"
+         style="stroke-width:0.264583"
+         x="1.7009954"
+         y="18.848869">load</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="pause"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:9.17222px;font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
+       x="0.27583712"
+       y="17.837467"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="font-size:9.17222px;stroke-width:0.264583"
+         x="0.27583712"
+         y="17.837467">pause</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="speed+"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:9.17223px;font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
+       x="0.22986478"
+       y="14.665339"
+       id="text5"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="stroke-width:0.264583"
+         x="0.22986478"
+         y="14.665339">speed</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="0.22986478"
+         y="26.130627"
+         id="tspan6">    +</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="speed-"
+     style="display:none">
+    <text
+       xml:space="preserve"
+       style="font-size:9.17223px;font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
+       x="0.14845398"
+       y="14.556246"
+       id="text5-7"><tspan
+         sodipodi:role="line"
+         id="tspan5-1"
+         style="stroke-width:0.264583"
+         x="0.14845398"
+         y="14.556246">speed</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="0.14845398"
+         y="26.021534"
+         id="tspan6-1">    -</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="clean"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:9.17223px;font-family:'HarmonyOS Sans SC';-inkscape-font-specification:'HarmonyOS Sans SC';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke-width:0.264583"
+       x="1.7009954"
+       y="17.791492"
+       id="text7"><tspan
+         sodipodi:role="line"
+         id="tspan7"
+         style="stroke-width:0.264583"
+         x="1.7009954"
+         y="17.791492">clean</tspan></text>
+  </g>
+</svg>

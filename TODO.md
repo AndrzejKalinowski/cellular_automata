@@ -14,4 +14,5 @@
     - [x] Size input
     - [x] File input
 - [x] Arguments description in README
-- [ ] Smarter frame rate limiter
+- [x] Smarter frame rate limiter
+- [x] improve button look
